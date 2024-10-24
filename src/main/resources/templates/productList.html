@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">CRM Application</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/users}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/products}">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/customers}">Customers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container my-4">
+  <h1 class="text-center">Product List</h1>
+  <form action="/crm/products/create" method="post" class="mb-4">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <input type="text" name="name" class="form-control" placeholder="Product Name" required />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="number" name="price" class="form-control" placeholder="Price" required />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="number" name="stock" class="form-control" placeholder="Stock" required />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Product</button>
+  </form>
+
+  <h2>Existing Products</h2>
+  <ul class="list-group">
+    <li class="list-group-item" th:each="product : ${products}">
+      <span th:text="${product.name}"></span> - <span th:text="${product.price}"></span> - <span th:text="${product.stock}"></span>
+      <a th:href="@{/crm/products/edit/{id}(id=${product.id})}" class="btn btn-warning btn-sm float-right">Edit</a>
+      <form action="/crm/products/delete/{id}" method="post" th:action="@{/crm/products/delete/{id}(id=${product.id})}" class="float-right mr-2">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+      </form>
+    </li>
+  </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

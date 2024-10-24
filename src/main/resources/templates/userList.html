@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <title>User List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">CRM Application</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/users}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/products}">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/crm/customers}">Customers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container my-4">
+  <h2 class="text-center">User List</h2>
+  <form action="/crm/users/create" method="post" class="mb-4">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <input type="text" name="username" class="form-control" placeholder="Username" required />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="password" name="password" class="form-control" placeholder="Password" required />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="text" name="role" class="form-control" placeholder="Role" required />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create User</button>
+  </form>
+
+  <h3>Existing Users</h3>
+  <ul class="list-group">
+    <li class="list-group-item" th:each="user : ${users}">
+      <span th:text="${user.username}"></span> - <span th:text="${user.role}"></span>
+      <a th:href="@{/crm/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm float-right">Edit</a>
+      <form action="/crm/users/delete/{id}" method="post" th:action="@{/crm/users/delete/{id}(id=${user.id})}" class="float-right mr-2">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+      </form>
+    </li>
+  </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

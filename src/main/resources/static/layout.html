@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM Application</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="bg-primary text-white p-3">
+  <h1>CRM Application</h1>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">CRM</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/crm/users}">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/crm/products}">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/crm/customers}">Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/crm/orders}">Orders</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container my-4">
+  <div th:replace="${content}"></div>
+</main>
+
+<footer class="bg-light text-center text-lg-start mt-auto p-3">
+  <p>© 2024 CRM Application. All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
